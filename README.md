@@ -12,3 +12,7 @@ Installation
 ============================================
 
 Copy this code into an empty folder under your webserver and access the URL. Fill in the fields and enjoy!
+
+License
+============================================
+This Software is distribuited under GNU General Public License (GPL) http://www.gnu.org/licenses/gpl.txt

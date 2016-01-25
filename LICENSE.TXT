@@ -1,8 +1,7 @@
 MYC Vtiger Customer Portal
 ============================================
 
-This software has been built using several other open source libraries
-whose details are given below:
+This software has been built using several other open source libraries whose details are given below:
 
 JQuery
 ----------------------------------------------------------------------
@@ -29,9 +28,9 @@ Fullcalendar JS
 http://fullcalendar.io
 
 
-Vtwsclib (vtiger webservices libraries)
+coreBOS PHP Webservices library
 ----------------------------------------------------------------------
-http://forge.vtiger.com/projects/vtwsclib/
+https://github.com/tsolucio/coreBOSwsLibrary.git
 
 
 jstz javascript timezone library
