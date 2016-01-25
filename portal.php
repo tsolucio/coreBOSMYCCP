@@ -647,6 +647,7 @@ class Plugins {
 	
 	public static function runall($modulename,$action,$event,$data=array()){
 		global $loaded_plugins;
+		if (is_array($loaded_plugins))
 		foreach($loaded_plugins as $pluginname => $pluginInstance){
 			if(in_array($modulename,$pluginInstance->affectedmodules) || in_array("Portal", $pluginInstance->affectedmodules))
 				if(method_exists($pluginInstance,$event))
