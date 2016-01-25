@@ -299,7 +299,7 @@ class Api{
     	global $api_client;
     	
 		if(isset($GLOBALS['api_user']) && $GLOBALS['api_user']!="" && isset($GLOBALS['api_pass']) && $GLOBALS['api_pass']!=""){
-			require_once('lib/vtwsclib/Vtiger/WSClient.php');
+			require_once('lib/vtwsclib/WSClient.php');
 					
 			$client = new Vtiger_WSClient($GLOBALS['vtiger_path']);
 			
