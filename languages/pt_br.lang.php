@@ -426,7 +426,7 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'Project Url' => 'Url',
 'description' => 'Descrição',
 'Project Task Number' => 'Código Tareafa',
-'Project Task Name' => 'Nome Tareafa',
+'Project Task Name' => 'Nome Tarefa',
 'End Date' => 'Data Final',
 'Type' => 'Tipo',
 'Progress' => 'Progresso',
