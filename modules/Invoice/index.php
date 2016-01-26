@@ -32,6 +32,8 @@ function detail($targetid){
 		if(!isset($mod_infos[$blockname])) $mod_infos[$blockname]=array();
 		$mod_infos[$blockname][]=array("label"=>$fieldlabel,"value"=>$fieldvalue);				
 	}
+	$products = $GLOBALS["sclient"]->call('get_inventory_products', $sparams);
+	$data['products']=$products[0];
 	
 	$docs=$this->get_documents();
 	

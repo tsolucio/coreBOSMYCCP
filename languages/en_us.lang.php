@@ -267,6 +267,12 @@ Additionally, you can also search the entire knowledge base by entering keywords
 'Shipping Country'=>'Shipping Country',
 'Terms & Conditions'=>'Terms & Conditions',
 'Description'=>'Description',
+'LBL_INVENTORY_PRODUCTS'=>'Products and services',
+'LBL_INVENTORY_NAME'=>'Name',
+'LBL_INVENTORY_QTY'=>'Quantity',
+'LBL_INVENTORY_LISTPRICE'=>'List Price',
+'LBL_INVENTORY_NETPRICE'=>'Price',
+'LBL_INVENTORY_TAX'=>'Tax',
 
 //Documents
 'LBL_NOTES_INFORMATION'=>'Documents',

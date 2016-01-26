@@ -165,6 +165,12 @@ $app_strings  = Array(
 'Sent' => 'Elküldve',
 'Credit Invoice' => 'Előleg',
 'Paid' => 'Fizetve',
+'LBL_INVENTORY_PRODUCTS'=>'Products and services',
+'LBL_INVENTORY_NAME'=>'Name',
+'LBL_INVENTORY_QTY'=>'Quantity',
+'LBL_INVENTORY_LISTPRICE'=>'List Price',
+'LBL_INVENTORY_NETPRICE'=>'Price',
+'LBL_INVENTORY_TAX'=>'Tax',
 
 //Products
 'No Products records Found!' => 'Termék nem található!',

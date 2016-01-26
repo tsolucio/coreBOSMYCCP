@@ -267,6 +267,12 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'Shipping Country'=>'País Entrega',
 'Terms & Conditions'=>'Prazos & Condições',
 'Description'=>'Descrição',
+'LBL_INVENTORY_PRODUCTS'=>'Products and services',
+'LBL_INVENTORY_NAME'=>'Name',
+'LBL_INVENTORY_QTY'=>'Quantity',
+'LBL_INVENTORY_LISTPRICE'=>'List Price',
+'LBL_INVENTORY_NETPRICE'=>'Price',
+'LBL_INVENTORY_TAX'=>'Tax',
 
 //Documents
 'LBL_NOTES_INFORMATION'=>'Documentos',
