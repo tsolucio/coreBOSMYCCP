@@ -25,8 +25,8 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <li><a href="" data-toggle="modal" data-target="#changePassModal"> <?php echo Language::translate("Change Password"); ?></a><li>
                 <li><a href="index.php?logout=1"><i class="fa fa-sign-out fa-fw"></i> <?php echo Language::translate("Logout"); ?></a></li>
-                 <li><a href="" data-toggle="modal" data-target="#changePassModal"> <?php echo Language::translate("Change Password"); ?></a><li>
             </ul>
             <!-- /.navbar-top-links -->
 
