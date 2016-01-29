@@ -18,7 +18,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="changePassModalLabel"><?php echo Language::translate("Change Password"); ?></h4>
+        <h4 class="modal-title" id="changePassModalLabel"><?php echo Language::translate("LBL_CHANGE_PASSWORD"); ?></h4>
       </div>
       <div class="modal-body">
       
@@ -34,23 +34,23 @@
       <?php if($msgt!="success"): ?>
         <form role="form" method="post">
 		  <div class="form-group">
-		    <label for="exampleInputPassword2"><?php echo Language::translate("Old Password"); ?></label>
-		    <input type="password" class="form-control" name="old_password" id="exampleInputPassword2" placeholder="<?php echo Language::translate("Old Password"); ?>">
+		    <label for="exampleInputPassword2"><?php echo Language::translate("LBL_OLD_PASSWORD"); ?></label>
+		    <input type="password" class="form-control" name="old_password" id="exampleInputPassword2" placeholder="<?php echo Language::translate("LBL_OLD_PASSWORD"); ?>">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputPassword1"><?php echo Language::translate("New Password"); ?></label>
-		    <input type="password" class="form-control" name="new_password" id="exampleInputPassword1" placeholder="<?php echo Language::translate("New Password"); ?>">
+		    <label for="exampleInputPassword1"><?php echo Language::translate("LBL_NEW_PASSWORD"); ?></label>
+		    <input type="password" class="form-control" name="new_password" id="exampleInputPassword1" placeholder="<?php echo Language::translate("LBL_NEW_PASSWORD"); ?>">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputPassword3"><?php echo Language::translate("Confirm New Password"); ?></label>
-		    <input type="password" class="form-control" name="confirm_password" id="exampleInputPassword3" placeholder="<?php echo Language::translate("Confirm New Password"); ?>">
+		    <label for="exampleInputPassword3"><?php echo Language::translate("LBL_CONFIRM_PASSWORD"); ?></label>
+		    <input type="password" class="form-control" name="confirm_password" id="exampleInputPassword3" placeholder="<?php echo Language::translate("LBL_CONFIRM_PASSWORD"); ?>">
 		  </div>
 		<input type="hidden" name="fun" value="changepassword">
 		<?php endif; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Language::translate("Close"); ?></button>
-        <?php if($msgt!="success"): ?><input type="submit" class="btn btn-primary" value="<?php echo Language::translate("Change Password"); ?>"><?php endif; ?>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo Language::translate("LBL_CLOSE"); ?></button>
+        <?php if($msgt!="success"): ?><input type="submit" class="btn btn-primary" value="<?php echo Language::translate("LBL_CHANGE_PASSWORD"); ?>"><?php endif; ?>
         </form>
       </div>
     </div>
