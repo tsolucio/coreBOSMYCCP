@@ -192,6 +192,7 @@ class Language
 
 		if($lang) $sel_lang=$lang;
 		else if(isset($_SESSION["loggeduser"]['language'])) $sel_lang=$_SESSION["loggeduser"]['language'];
+		else if(isset($GLOBALS['default_language'])) $sel_lang=$GLOBALS['default_language'];
 		else $sel_lang=key($GLOBALS['languages']);
 		
 		if(file_exists(ROOT_PATH."/languages/".$sel_lang.".lang.php")) include(ROOT_PATH."/languages/".$sel_lang.".lang.php");
