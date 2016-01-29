@@ -89,8 +89,7 @@ $app_strings = Array(
 
 //My settings
 'LBL_CHANGE_PASSWORD'=>'Cambiar contraseña',
-'LBL_OLD_PASSWORD'=>'Contraseña Anterior',
-'LBL_NEW_PASSWORD'=>'Contraseña Nueva',
+'LBL_OLD_PASSWORD'=>'Contraseña Actual',
 'LBL_CONFIRM_PASSWORD'=>'Confirmar Contraseña',
 'LBL_MY_DETAILS'=>'Mis Detalles',
 'LBL_LAST_LOGIN'=>'Último Acceso',
@@ -98,7 +97,7 @@ $app_strings = Array(
 'LBL_SUPPORT_END_DATE'=>'Fecha Fin de Soporte',
 'MSG_PASSWORD_CHANGED'=>'La contraseña ha sido cambiada correctamente.',
 'MSG_ENTER_NEW_PASSWORDS_SAME'=>'La contraseña nueva y la confirmada no coinciden',
-'MSG_YOUR_PASSWORD_WRONG'=>'Contraseña anterior incorrecta.',
+'MSG_YOUR_PASSWORD_WRONG'=>'Contraseña actual incorrecta.',
 
 //Added fields for Knowledge Base details
 'LBL_KNOWLEDGE_BASE'=>'Preguntas Frecuentes',
