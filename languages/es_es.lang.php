@@ -73,7 +73,8 @@ $app_strings = Array(
 'LBL_ADD_COMMENT'=>'Añadir Comentarios',
 'LBL_ATTACHMENTS'=>'Adjuntos',
 //Tickets Fields
-'Title' =>'Referencia',
+'Subject' => 'Asunto',
+'Title' =>'Asunto',
 'Assigned To' =>'Asignado a',
 'Priority' =>'Prioridad',
 'Severity' =>'Urgencia',
@@ -86,6 +87,33 @@ $app_strings = Array(
 'Category' =>'Categoría',
 'Description' =>'Incidencia',
 'Solution' =>'Solución',
+'Related Product'=>'Producto Relacionado',
+'Contract Service'=>'Contrato de Servicio',
+'Ticket Status' => 'Estado de la Incidencia',
+'Close Ticket' => 'Cerrar Incidencia',
+'Enter the title of the ticket' => 'Introduce el asunto de la incidencia',
+'Send Comment' => 'Enviar Comentario',
+'Submit Ticket' => 'Enviar Incidencia',
+'New Ticket' => 'Nueva Incidencia',
+'Ticket Comments' => 'Comentarios de la Incidencia',
+'Ticket Detail' => 'Detalles de la Incidencia',
+'Download'=>'Descargar',
+'Upload'=>'Subir',
+//Tickets. Added for existing picklist entries.
+
+'Big Problem' => 'Gran Problema',
+'Small Problem' => 'Problema Pequeño',
+'Other Problem' => 'Otro Problema',
+'Low' => 'Baja',
+
+'Normal' => 'Normal',
+'High' => 'Alta',
+'Urgent' => 'Urgente',
+
+'Minor' => 'Menor',
+'Major' => 'Mayor',
+'Feature' => 'Característica',
+'Critical' => 'Critica',
 
 //My settings
 'LBL_CHANGE_PASSWORD'=>'Cambiar contraseña',
@@ -125,6 +153,9 @@ Additionally, you can also search the entire knowledge base by entering keywords
 'LBL_FAQ_DETAIL'=>'Knowledge Base Detail',
 'LBL_ARTICLE_INTERESTED'=>'Here\'s an article you might be interested in:',
 'LBL_PRESS_CNTR_D'=>'Press Ctrl+D',
+// Knowledge Base
+'Categories'=>'Categorías',
+'Sorry... No F.A.Q. in this Category!' => 'Lo siento... No hay Preguntas Frecuentes para esta Categoría!',
 
 //Contacts
 'Contact Information'=>'Datos Personales',
@@ -459,6 +490,12 @@ Additionally, you can also search the entire knowledge base by entering keywords
 'Go to Login'=>'Volver a iniciar sesión',
 'The Email you Request is not in our system!'=>'El email proporcionado, no se encuentra en nuestro sistema.',
 'We have send an Email containing your Password at the requested Address!'=>'Te hemos enviado un email que contiene la contraseña para la dirección solicitada',
+
+// No record found messages
+'No Quotes records Found!'=>'No se ha encontrado ningún Presupuesto!',
+'No Documents records Found!'=>'No se ha encontrado ningún Documento!',
+'No Invoice records Found!'=>'No se ha encontrado ninguna Factura!',
+'No Project records Found!'=>'No se ha encontrado ningún Proyecto!',
 
 
 );
