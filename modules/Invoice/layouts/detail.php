@@ -19,12 +19,12 @@
 	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<?php echo $blockname; ?>
+				<?php echo Language::translate($blockname); ?>
 			</div>
 			<table class="table">
 				<?php
 					foreach($tblocks as $field){
-						echo "<tr><td><strong>".$field['label'].": </strong></td><td>".$field['value']."</td></tr>";
+						echo "<tr><td><strong>".Language::translate($field['label']).": </strong></td><td>".$field['value']."</td></tr>";
 					}
 				?>
 			</table>

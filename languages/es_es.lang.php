@@ -432,15 +432,20 @@ Additionally, you can also search the entire knowledge base by entering keywords
 'LBL_ASSET_INFORMATION' => 'Información del Recurso',
 
 // Projects & Project Tasks
+'Project No' => 'Proyecto Nº',
+'Project' => 'Proyectos',
+'Project Information' => 'Información del Proyecto',
 'LBL_PROJECT_INFORMATION' => 'Proyectos',
 'LBL_PROJECT_TASKS' => 'Activitades',
 'LBL_PROJECT_MILESTONES' => 'Hitos',
 'LBL_PROJECT_TICKETS' => 'Incidendicas del Proyecto',
 'LBL_RAISE_TICKET_BUTTON' => 'Elevar Incidencia',
+'Project Related Tickets' => 'Incidencias del Proyecto',
 'ProjectTask' => 'Actividad',
 'Project Tasks' => 'Actividades',
 'ProjectMilestone' => 'Hito',
 'Project Milestones' => 'Hitos',
+'Project Related Milestones' => 'Hitos',
 
 'Project Name' => 'Nombre Proyecto',
 'Start Date' => 'Fecha inicio',
@@ -497,7 +502,32 @@ Additionally, you can also search the entire knowledge base by entering keywords
 'No Invoice records Found!'=>'No se ha encontrado ninguna Factura!',
 'No Project records Found!'=>'No se ha encontrado ningún Proyecto!',
 
-
+//SalesOrder
+'SalesOrder' => 'Orden de Venta',
+'Order No' => 'Orden de Venta Nº',
+'Organization Name' => 'Cuenta',
+'Quote Name' => 'Presupuesto',
+'SalesOrder No' => 'Orden de Venta Nº',
+'Purchase Order' => 'Orden de Compra',
+'Pending' => 'Pendiente',
+'Recurring Invoice Information ' => 'Información de facturación recurrente',
+'Enable Recurring' => 'Activar Recurrencia',
+'Frequency' => 'Frecuencia',
+'Start Period' => 'Inicio recurrencia',
+'End Period' => 'Fin recurrencia',
+'Payment Duration' => 'Pago',
+'Invoice Status' => 'Estado de la factura',
+'Total Tax' => 'Total Impuestos',
+'Net Total' => 'Total Neto',
+'Total Tax Retention' => 'Retención Total',
+'Financial Information' => 'Información financiera',
+'Partial Payments Information' => 'Información de pagos parciales',
+'Amount Due' => 'Cantidad debida',
+'Amount Paid' => 'Cantidad pagada',
+'Total Amount' => 'Total',
+'Attachments' => 'Adjuntos',
+'File' => 'Fichero',
+'Sales Order' => 'Orden de Venta',
 );
 
 ?>
