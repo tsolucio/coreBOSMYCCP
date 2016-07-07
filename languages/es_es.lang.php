@@ -118,6 +118,7 @@ $app_strings = Array(
 //My settings
 'LBL_CHANGE_PASSWORD'=>'Cambiar contraseña',
 'LBL_OLD_PASSWORD'=>'Contraseña Actual',
+'LBL_NEW_PASSWORD' => 'Nueva Contraseña',
 'LBL_CONFIRM_PASSWORD'=>'Confirmar Contraseña',
 'LBL_MY_DETAILS'=>'Mis Detalles',
 'LBL_LAST_LOGIN'=>'Último Acceso',
