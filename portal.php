@@ -1,5 +1,4 @@
 <?php
-
 /* * *******************************************************************************
  * The content of this file is subject to the MYC Vtiger Customer Portal license.
  * ("License"); You may not use this file except in compliance with the License
@@ -7,24 +6,20 @@
  * Portions created by Proseguo s.l. - MakeYourCloud are Copyright(C) Proseguo s.l. - MakeYourCloud
  * All Rights Reserved.
  * ****************************************************************************** */
-
 require_once('lib/nusoap/lib/nusoap.php');
 require_once('lib/mycwsapi/webservices.class.php');
 
 class Router
 {
 
- 	/*****************************************************************************
- 	* Function: Router::start()
- 	* Description: This function intercept the $_REQUEST parameters and call the requested action 
+	/*****************************************************************************
+	* Function: Router::start()
+	* Description: This function intercept the $_REQUEST parameters and call the requested action 
 	* ****************************************************************************/
 
-	public static function start() 
-    {
-    
-    	global $avmod;
-    									
-		
+	public static function start() {
+		global $avmod;
+
 		$targetmodule=$_REQUEST['module'];
 		$targetaction=$_REQUEST['action'];
 		
@@ -41,11 +36,10 @@ class Router
 		//If the vtlib api are configured add the configured module to the enabled modules array
 		if(isset($GLOBALS['api_user']) && $GLOBALS['api_user']!="" && isset($GLOBALS['api_pass']) && $GLOBALS['api_pass']!=""){
 			if(Api::connect()!='API_LOGIN_FAILED')
-				if(isset($GLOBALS['api_modules']) && count($GLOBALS['api_modules'])>0)			
+				if(isset($GLOBALS['api_modules']) && count($GLOBALS['api_modules'])>0)
 					foreach($GLOBALS['api_modules'] as $modname => $modfields)
 						if(isset($modfields["is_enabled"]) && $modfields["is_enabled"]=="true") $avmod[]=$modname;
 						//if(in_array($modname, $GLOBALS['enabled_api_modules'])) $avmod[]=$modname;	
-						 
 		}
 		
 		Plugins::runall("PortalBase","base","preTemplateLoad",$_REQUEST);
@@ -87,48 +81,38 @@ class Router
 		
 		//if there is a request for change password call the modal again and show the request resault
 		if(isset($GLOBALS["opresult"]) && $GLOBALS["opresult"]!="") echo "<script> $(function(){ $('#changePassModal').modal('show'); })</script>";
+	}
 
-    
-    }
-    
-    
-    
-    public static function slugify($text)
+	public static function slugify($text)
 	{ 
 	  // replace non letter or digits by -
-	  $text = preg_replace('~[^\\pL\d]+~u', '-', $text);	
+	  $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
 	  // trim
-	  $text = trim($text, '-');	
+	  $text = trim($text, '-');
 	  // transliterate
-	  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);	
+	  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
 	  // lowercase
-	  $text = strtolower($text);	
+	  $text = strtolower($text);
 	  // remove unwanted characters
-	  $text = preg_replace('~[^-\w]+~', '', $text);	
+	  $text = preg_replace('~[^-\w]+~', '', $text);
 	  if (empty($text))
 	  {
 	    return 'n-a';
 	  }	
 	  return $text;
 	}
-    
 
 }
-  
 
-
-class Template 
-{
+class Template {
 
 	/*****************************************************************************
- 	* Function: Template::display()
- 	* Description: This function receive 3 parameters the module wich you want to display, the data array to pass to the view
- 	* and the view name (the name of the view file). 
+	* Function: Template::display()
+	* Description: This function receive 3 parameters the module wich you want to display, the data array to pass to the view
+	* and the view name (the name of the view file). 
 	* ****************************************************************************/
-	
-    public static function display($module,$data,$viewname) 
-    {
-    	
+
+    public static function display($module,$data,$viewname) {
       //If a parameter theme is specified in the REQUEST, the theme will be setted as requestes, else the default theme will be loaded
       if(isset($_REQUEST['theme']) && $_REQUEST['theme']!="" && is_dir("themes/".$_REQUEST['theme']))
       $_SESSION["portal_theme"]=$_REQUEST['theme'];
@@ -148,14 +132,14 @@ class Template
 	  require_once("themes/".$currtheme."/menu.php");
     
 	  //Fallback cascade theme inclusion, first check if is present a specified view for the current module in the current theme folder
-      if(file_exists("themes/".$currtheme."/modules/".$module."/".$viewname.".php")) 
+      if(file_exists("themes/".$currtheme."/modules/".$module."/".$viewname.".php"))
 		require_once("themes/".$currtheme."/modules/".$module."/".$viewname.".php");
 	
 	  //else check if is present a specified DEFAULT view for the current module in the current module folder
-	  else if(file_exists("modules/".$module."/layouts/".$viewname.".php")) 
+	  else if(file_exists("modules/".$module."/layouts/".$viewname.".php"))
 		require_once("modules/".$module."/layouts/".$viewname.".php");
 	  
-	  //else check if is present a specified DEFAULT view for COMMON modules in the current theme module folder 	
+	  //else check if is present a specified DEFAULT view for COMMON modules in the current theme module folder
 	  else if(file_exists("themes/".$currtheme."/modules/Module/".$viewname.".php")) 
 		require_once("themes/".$currtheme."/modules/Module/".$viewname.".php");
 	
@@ -166,29 +150,26 @@ class Template
 	  require_once("themes/".$currtheme."/footer.php");
 	  
 	  Plugins::runall($module,$viewname,"postTemplateLoad",$data);
-	  
     }
 
     public static function displayPlugin($pluginname,$data,$viewname) 
     {
     	if(file_exists("plugins/".$pluginname."/views/".$viewname.".php")) 
 			require_once("plugins/".$pluginname."/views/".$viewname.".php");
-    }    
-    
-    
+    }
+
 }
 
 class Language
 {
 
 	/*****************************************************************************
- 	* Function: Language::translate()
- 	* Description: This function return the translated string, if it is found in the language file, else it will return the term as
- 	* prompted
+	* Function: Language::translate()
+	* Description: This function return the translated string, if it is found in the language file, else it will return the term as
+	* prompted
 	* ****************************************************************************/
 	
-	public static function translate($term,$lang=false) 
-    {
+	public static function translate($term,$lang=false) {
 
 		if($lang) $sel_lang=$lang;
 		else if(isset($_SESSION["loggeduser"]['language'])) $sel_lang=$_SESSION["loggeduser"]['language'];
@@ -201,71 +182,49 @@ class Language
 			$date=strtotime($term);
 			if(strlen($term)>10) return date($GLOBALS['date_format'].' h:i', $date);
 			else return date($GLOBALS['date_format'], $date);
-			
 		}
-		
 
-		
-    	if(isset($app_strings[$term])) return $app_strings[$term];
-    	else return $term;
-    
-    }
-    
+		if(isset($app_strings[$term])) return $app_strings[$term];
+		else return $term;
+	}
 
 }
 
+class PortalConfig {
 
+	public static function load() {
+		define('ROOT_PATH', realpath(__DIR__));
 
-
-class PortalConfig
-{
-
-    
-    public static function load()
-    {    
-	    define('ROOT_PATH', realpath(__DIR__));
-	    
-    	if(file_exists(ROOT_PATH."/configuration/config.php")){
-	        $config = require ROOT_PATH."/configuration/config.php";
+		if(file_exists(ROOT_PATH."/configuration/config.php")){
+			$config = require ROOT_PATH."/configuration/config.php";
 			$config['api_modules'] =  require ROOT_PATH."/configuration/apimodules.php";
-			
 			if(is_array($config)){
-				
 				foreach($config as $param => $val){
 					global $$param;
 					$GLOBALS[$param]=$val;
 				}
-				
-				if(isset($GLOBALS['default_timezone']) && $GLOBALS['default_timezone']!="") 
+				if(isset($GLOBALS['default_timezone']) && $GLOBALS['default_timezone']!="")
 					date_default_timezone_set($GLOBALS['default_timezone']);
-											
+
 				foreach (scandir(ROOT_PATH."/languages/") as $key => $value){
 					if (!in_array($value,array(".","..")) && strpos($value, '.lang.php') !== false){
-						$value=str_replace(".lang.php", "", $value); 						
-						$GLOBALS['languages'][$value]=Language::translate($value,$value);							
-					}						
+						$value=str_replace(".lang.php", "", $value);
+						$GLOBALS['languages'][$value]=Language::translate($value,$value);
+					}
 				}
-					
+
 				$def_lang = $GLOBALS['languages'][$GLOBALS['default_language']];
 				unset($GLOBALS['languages'][$GLOBALS['default_language']]);
-				
-				$GLOBALS['languages']=array_merge(array($GLOBALS['default_language']=>$def_lang),$GLOBALS['languages']);		
-							
-			}	
-			
-			else {
+				$GLOBALS['languages']=array_merge(array($GLOBALS['default_language']=>$def_lang),$GLOBALS['languages']);
+			} else {
 				header("Location: configuration/index.php");
 				die();
-			}	
-		}
-		
-		else {
+			}
+		} else {
 			header("Location: configuration/index.php");
-			die();	    
-		} 
-	}   
-	
-    
+			die();
+		}
+	}
 }
 
 class Portal{
@@ -275,24 +234,21 @@ class Portal{
 		session_start();
 		$sclient = new soapclient2($GLOBALS['vtiger_path']."/vtigerservice.php?service=customerportal");
 		$sclient->soap_defencoding = $GLOBALS['default_charset'];
-		
 		if(WSRequest::urlExists($GLOBALS['vtiger_path']."/vtigerservice.php?service=customerportal")===false){
 			header("Location: configuration/index.php?pe=errpath");
 			die();
 		}
 	}
-	
 
 }
-
 
 class Api{
 	
 	/*****************************************************************************
- 	* Function: Api::connect()
- 	* Description: This function try (if api user and pass are provided in the config file) 
- 	* to set the connection with the vtiger webservices api
- 	* api using vtlib library
+	* Function: Api::connect()
+	* Description: This function try (if api user and pass are provided in the config file) 
+	* to set the connection with the vtiger webservices api
+	* api using vtlib library
 	* ****************************************************************************/
 	
 	public static function connect() 
@@ -330,62 +286,50 @@ class Api{
 	    	Api::connect();
 	    	if(!isset($api_client) || $api_client=="NOT_CONFIGURED" ||  $api_client=="API_LOGIN_FAILED")
 	    		return false;
-	    	else return true;	
+	    	else return true;
 	    }
 	    else return true;
     }
-	
-	
+
 }
 
 class MYCWSApi{
-	public static function connect() 
-    {
-    	global $mycwsapi;
-    	
-		if(isset($GLOBALS['api_user']) && $GLOBALS['api_user']!="" && isset($GLOBALS['api_pass']) && $GLOBALS['api_pass']!=""){			
-					
+	public static function connect() {
+		global $mycwsapi;
+		if(isset($GLOBALS['api_user']) && $GLOBALS['api_user']!="" && isset($GLOBALS['api_pass']) && $GLOBALS['api_pass']!=""){
 			$mycwsapi=new VTWebservices($GLOBALS['vtiger_path'],$GLOBALS['api_user'], $GLOBALS['api_pass']);
 			if(!$mycwsapi->checkLogin()) $mycwsapi='API_LOGIN_FAILED';
 		}
-		
 		else $mycwsapi="NOT_CONFIGURED";
-		
 		return $api_client;
-    
-    }	
-}  
-  
-  
-class User
-{
+	}
+}
 
-		
+class User {
+
 		/*****************************************************************************
-	 	* Function: User::check_login()
+		* Function: User::check_login()
 		* ****************************************************************************/
-		
-		public static function check_login() 
-	    {
-	    	global $opresult;
-	    
+
+		public static function check_login() {
+			global $opresult;
+
 			//ADDED TO ENABLE THEME SWITCHING
 			if(isset($_REQUEST['theme']) && $_REQUEST['theme']!="" && is_dir("themes/".$_REQUEST['theme']))
-			   $_SESSION["portal_theme"]=$_REQUEST['theme'];
-			      
+				$_SESSION["portal_theme"]=$_REQUEST['theme'];
+
 			if(isset($_SESSION["portal_theme"])) $currtheme=$_SESSION['portal_theme'];
-			      
+
 			else $currtheme=$GLOBALS["portal_theme"];
 			//********************************
-			        
-			
+
 			if(isset($_REQUEST['logout'])) {
 				session_unset();
 				$_SESSION["portal_theme"]=$currtheme;
 				header("Location: index.php");
 				die();
 			}
-		
+
 			if(!isset($_SESSION['loggeduser']) || $_SESSION["loggeduser"]=="ERROR") {
 				
 				$login=false;
@@ -401,34 +345,22 @@ class User
 					if(isset($lres) && $lres=="ERROR") $loginerror="The Email you Request is not in our system!";
 					
 					else if(isset($lres) && $lres=="SUCCESS") $successmess="We have send an Email containing your Password at the requested Address!";
-					
-																									
-					
+
 					if(file_exists("themes/".$currtheme."/login.php")) require_once("themes/".$currtheme."/login.php");
 					else require_once("themes/default/login.php"); 
 					
 					session_unset();
 					die();
-					
 				}
-			
 			}
-			
 			else User::portal_login($_SESSION['loggeduser']['user_name'],$_SESSION['loggeduser']['user_password']);
 			
 			if(isset($_SESSION['loggeduser']) && isset($_REQUEST['fun']) && $_REQUEST['fun']=="changepassword")
 			$GLOBALS["opresult"]=User::change_password();
 		}
 
-
-
-
-
-
-
-
 		/*****************************************************************************
-	 	* Function: User::forgot_password()
+		* Function: User::forgot_password()
 		* ****************************************************************************/
 
 		function forgot_password($email){
@@ -438,49 +370,41 @@ class User
 		
 			if(strpos($result,'false')!==false) return "ERROR";
 			else return "SUCCESS";
-			
 		}
 
-
 		/*****************************************************************************
-	 	* Function: User::portal_login()
+		* Function: User::portal_login()
 		* ****************************************************************************/
-	
+
 		function portal_login($email,$password){
-		
 			if(isset($_REQUEST['lang']) && file_exists("languages/".$_REQUEST['lang'].".lang.php")) $tlang = $_REQUEST['lang'];
-				
+
 			else if(isset($_SESSION["loggeduser"]['language'])) $tlang=$_SESSION["loggeduser"]['language'];
-				
+
 			else $tlang = $GLOBALS['default_language'];
-		
+
 			$params = array('user_name' => "$email",
 			'user_password'=>"$password",
 			'version' => "6.0.1");
-		
+
 			$result = $GLOBALS["sclient"]->call('authenticate_user', $params);
-			
-			if(isset($result[0]['id'])){ 								
-				
+
+			if(isset($result[0]['id'])){
 				$_SESSION["loggeduser"] = $result[0];
 				$_SESSION["loggeduser"]['language'] = $tlang;
-				
 				$params = Array('id'=>$_SESSION["loggeduser"]['id']);
 				$_SESSION["loggeduser"]["accountid"] = $GLOBALS["sclient"]->call('get_check_account_id', $params);
-				
 			}
-			
 			return $result;
 		}
-		
-		
+
 		/*****************************************************************************
-	 	* Function: User::change_password()
-	 	* Parameters: $_REQUEST Array
-	 	* Description: This function is derived from the original change_password function 
-	 	* written in the Vtiger Customer Portal by the Vtiger Team
+		* Function: User::change_password()
+		* Parameters: $_REQUEST Array
+		* Description: This function is derived from the original change_password function 
+		* written in the Vtiger Customer Portal by the Vtiger Team
 		* ****************************************************************************/
-			
+
 		//Added for My Settings - Save Password
 		function change_password($version="6.0.0")
 		{
@@ -531,10 +455,10 @@ class User
 
 
 		/*****************************************************************************
-	 	* Function: User::download_file()
-	 	* Parameters: $_REQUEST Array
-	 	* Description: This function is derived from the original download function 
-	 	* written in the Vtiger Customer Portal by the Vtiger Team
+		* Function: User::download_file()
+		* Parameters: $_REQUEST Array
+		* Description: This function is derived from the original download function 
+		* written in the Vtiger Customer Portal by the Vtiger Team
 		* ****************************************************************************/
 
 		function download_file(){
@@ -584,13 +508,10 @@ class User
 						if(isset($GLOBALS['api_modules'][$_REQUEST['module']])) $block=substr($_REQUEST['module'], 0, -2);
 						else $block = $_REQUEST['module'];
 						$id=$_REQUEST['id'];
-						
-												
 						$params = array('id' => "$id", 'block'=>"$block", 'contactid'=>$_SESSION["loggeduser"]['id'],'sessionid'=>$_SESSION["loggeduser"]['sessionid'], 'language'=>$_SESSION["loggeduser"]['language']);
 						$fileContent = $GLOBALS["sclient"]->call('get_pdfmaker_pdf', $params);
-						//if something went wrong within the get_pdf_maker function then call the standard function get_pdf   
-						
-						
+						//if something went wrong within the get_pdf_maker function then call the standard function get_pdf
+
 						if($fileContent[0] != "failure"  && isset($fileContent[0]))
 						{
 						    $fileType ='application/pdf';
@@ -607,42 +528,37 @@ class User
 						    $filesize = strlen(base64_decode($fileContent));
 						    $filename = "$block.pdf";
 						}
-						
+
 						if($fileContent=="#NOT AUTHORIZED#") header("Location: index.php?module=".$_REQUEST['module']."&action=index");
 
-		
 					}
-					
 					// : End
-		
+
 					//we have to get the content by passing the customerid, fileid and filename
 					$customerid = $_SESSION["loggeduser"]['id'];
 					$sessionid = $_SESSION["loggeduser"]['sessionid'];
-		
 					header("Content-type: $fileType");
 					header("Content-length: $filesize");
 					header("Cache-Control: private");
 					header("Content-Disposition: attachment; filename=$filename");
 					header("Content-Description: PHP Generated Data");
 					echo base64_decode($fileContent);
-					exit;		
-			
+					exit;
 		}
 
-
-}  
+}
 
 class Plugins {
 	
 	public static function load_plugins(){
 		global $loaded_plugins;		
 		foreach (scandir(ROOT_PATH."/plugins/") as $key => $pluginname){
-			if (!in_array($pluginname,array(".",".."))) 
+			if (!in_array($pluginname,array(".","..")))
 				if(file_exists(ROOT_PATH."/plugins/".$pluginname."/".$pluginname.".php")){
 					include_once(ROOT_PATH."/plugins/".$pluginname."/".$pluginname.".php");
-					$pluginclassname = ucfirst($pluginname)."Plugin";		
+					$pluginclassname = ucfirst($pluginname)."Plugin";
 					$loaded_plugins[$pluginname] = new $pluginclassname;
-				}		
+				}
 		}
 	}
 	
@@ -658,10 +574,6 @@ class Plugins {
 		return $data;
 		
 	}
- 	
 }
-
-
-
 
 ?>
