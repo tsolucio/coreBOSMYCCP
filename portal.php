@@ -232,7 +232,11 @@ class Portal{
 	public static function connect(){
 		global $sclient;
 		session_start();
-		$sclient = new soapclient2($GLOBALS['vtiger_path']."/vtigerservice.php?service=customerportal");
+		try {
+			$sclient = new soapclient2($GLOBALS['vtiger_path']."/vtigerservice.php?service=customerportal");
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
 		$sclient->soap_defencoding = $GLOBALS['default_charset'];
 		if(WSRequest::urlExists($GLOBALS['vtiger_path']."/vtigerservice.php?service=customerportal")===false){
 			header("Location: configuration/index.php?pe=errpath");
@@ -394,6 +398,8 @@ class User {
 				$_SESSION["loggeduser"]['language'] = $tlang;
 				$params = Array('id'=>$_SESSION["loggeduser"]['id']);
 				$_SESSION["loggeduser"]["accountid"] = $GLOBALS["sclient"]->call('get_check_account_id', $params);
+			} else {
+				$result = array(0 => 'INVALID_USERNAME_OR_PASSWORD');
 			}
 			return $result;
 		}
