@@ -129,7 +129,7 @@
 							<input type="hidden" name="module" value="HelpDesk">
 							<input type="hidden" name="action" value="index">
 							<input type="hidden" name="fun" value="uploadfile">
-							<input type="hidden" name="ticketid" value="<?php echo $data['ticketid']; ?>'">
+							<input type="hidden" name="ticketid" value="<?php echo $data['ticketid']; ?>">
 							<input type="hidden" name="customerfile_hidden"/>
 			
                             
