@@ -64,22 +64,19 @@ class HelpDesk extends BaseModule{
 		if(isset($_FILES['customerfile'])) $data['uploadres']=$this->add_attachment();
 		if(isset($_REQUEST['comments'])) $comm=$this->update_comment();
 		if(isset($_REQUEST['fun']) && $_REQUEST['fun']=="close_ticket") $cl=$this->close_ticket($ticketid);
-		
-		
+
 		$params = array(
-			'id' => $_REQUEST["ticketid"], 
+			'id' => $_REQUEST["ticketid"],
 			'block'=>"$this->module",
 			'contactid'=>$_SESSION["loggeduser"]['id'],
 			'sessionid'=>$_SESSION["loggeduser"]['sessionid']
 		);
-		$result = $GLOBALS["sclient"]->call('get_details', $params);	
+		$result = $GLOBALS["sclient"]->call('get_details', $params);
 		$ticketinfo = $result[0][$this->module];
-		
 
-		
 		$params = array(array(
-			'id'=>$_SESSION["loggeduser"]['id'], 
-			'sessionid'=>$_SESSION["loggeduser"]['sessionid'], 
+			'id'=>$_SESSION["loggeduser"]['id'],
+			'sessionid'=>$_SESSION["loggeduser"]['sessionid'],
 			'ticketid' => "$ticketid"
 		));
 		$data['commentresult'] = $GLOBALS["sclient"]->call('get_ticket_comments', $params);
@@ -92,12 +89,8 @@ class HelpDesk extends BaseModule{
 			'ticketid' => "$ticketid"
 		));
 		$creator = $GLOBALS["sclient"]->call('get_ticket_creator', $params);
-		
 		$data['ticket_status'] = '';
-		
-		
 		$data['ticket_infos']=array();
-		
 		foreach($ticketinfo as $ticketfield) {
 		
 			$fieldlabel = $ticketfield['fieldlabel'];
@@ -112,21 +105,16 @@ class HelpDesk extends BaseModule{
 			}
 			else if($fieldlabel == 'Ticket No') $data['ticketno'] = $fieldvalue;
 		}
-		
-		
-		
+
 		$data['attachments']=$this->get_ticket_attachments_list($_REQUEST["ticketid"]);
-		
 	
 		Template::display($this->module,$data,'detail');
 	
 	}
-	
-	
+
 	/*****************************************************************************
 	* Function: HelpDesk::create_new()
 	* ****************************************************************************/
-	
 	function create_new(){
 	
 		$params = array(array('id'=>$_SESSION["loggeduser"]['id'], 'sessionid'=>$_SESSION["loggeduser"]['sessionid']));
