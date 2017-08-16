@@ -20,16 +20,16 @@ class Router
 	public static function start() {
 		global $avmod;
 
-		$targetmodule=$_REQUEST['module'];
-		$targetaction=$_REQUEST['action'];
-		
+		$targetmodule = (isset($_REQUEST['module']) ? $_REQUEST['module'] : '');
+		$targetaction = (isset($_REQUEST['action']) ? $_REQUEST['action'] : '');
+
 		//Get a list of available module for this user 
 		$params = array($_SESSION["loggeduser"]['id']);
 		
 		$avmod=$GLOBALS["sclient"]->call('get_modules',$params);
 		
 		//If the dashboard is enabled show them as the index module of the portal
-		if($GLOBALS["show_dashboard"]=="true"){
+		if (isset($GLOBALS['show_dashboard']) && $GLOBALS['show_dashboard']=='true') {
 			$avmod=array_merge(array("Home"),$avmod);
 		}
 		
@@ -70,9 +70,7 @@ class Router
 		else if(isset($_REQUEST['productid'])) $mod->detail($_REQUEST['productid']);
 		else if(isset($_REQUEST['faqid'])) $mod->detail($_REQUEST['faqid']);
 		else if(isset($_REQUEST['id'])) $mod->detail($_REQUEST['id']);
-			
 
-		
 		else if($targetmodule=="HelpDesk" && $targetaction=="new") $mod->create_new();
 
 		else if($targetmodule=="Home" || $targetaction=="dashboard") $mod->dashboard();
@@ -193,7 +191,7 @@ class Language
 class PortalConfig {
 
 	public static function load() {
-		define('ROOT_PATH', realpath(__DIR__));
+		if (!defined('ROOT_PATH')) define('ROOT_PATH', realpath(__DIR__));
 
 		if(file_exists(ROOT_PATH."/configuration/config.php")){
 			$config = require ROOT_PATH."/configuration/config.php";
@@ -255,10 +253,9 @@ class Api{
 	* api using vtlib library
 	* ****************************************************************************/
 	
-	public static function connect() 
-    {
-    	global $api_client;
-    	
+	public static function connect() {
+		global $api_client;
+
 		if(isset($GLOBALS['api_user']) && $GLOBALS['api_user']!="" && isset($GLOBALS['api_pass']) && $GLOBALS['api_pass']!=""){
 			require_once('lib/vtwsclib/WSClient.php');
 					
@@ -305,7 +302,7 @@ class MYCWSApi{
 			if(!$mycwsapi->checkLogin()) $mycwsapi='API_LOGIN_FAILED';
 		}
 		else $mycwsapi="NOT_CONFIGURED";
-		return $api_client;
+		return $mycwsapi;
 	}
 }
 
@@ -468,15 +465,11 @@ class User {
 		* ****************************************************************************/
 
 		function download_file(){
-	
-					$filename = $_REQUEST['filename'];
-					$fileType = $_REQUEST['filetype'];
-					//$fileid = $_REQUEST['fileid'];
-					$filesize = $_REQUEST['filesize'];
+					$filename = (isset($_REQUEST['filename']) ? $_REQUEST['filename'] : '');
+					$fileType = (isset($_REQUEST['filetype']) ? $_REQUEST['filetype'] : '');
+					//$fileid = (isset($_REQUEST['fileid']) ? $_REQUEST['fileid'] : '');
+					$filesize = (isset($_REQUEST['filesize']) ? $_REQUEST['filesize'] : '');
 		
-					//Added for enhancement from Rosa Weber
-		
-					
 					if($_REQUEST['module'] == 'Documents')
 					{
 						$id=$_REQUEST['id'];

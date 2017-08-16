@@ -8,38 +8,22 @@
  * ****************************************************************************** */
 ?>
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate($module); ?> </h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
                 ?> 
             <div class="row">
                 <div class="col-lg-12">
-                    
-                        
                        <?php if(isset($data) && count($data)>0){ ?>
-                       
                        <?php foreach($data as $table): ?> 
-                       
-                       
-                       
                        <?php if(isset($table['recordlist']) && count($table['recordlist'])>0 && $table['recordlist']!=""){ ?>
-                       
                        <div class="panel panel-default">
                         <div class="panel-heading">
                             <?php echo Language::translate($table['tablename']); ?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        
-                       
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover dataTables" >
                                     <thead>
@@ -48,46 +32,34 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
                                     	<?php 
                                     	foreach($table['recordlist'] as $record){
-                                    	
                                     			echo "<tr>";
                                     			foreach($record as $record_fields) echo "<td>".Language::translate($record_fields['fielddata'])."</td>";
                                     			echo "</tr>";
-                                    			 																	
                                     	}
-	                                    	
                                     	?>
-                                    	                                                                              
                                     </tbody>
                                 </table>
                             </div>
-                            
                             </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                         <?php } ?> 
-                         <?php endforeach; ?> 
-                         
-                         <?php } else { ?>    
+                         <?php } ?>
+                         <?php endforeach; ?>
+                         <?php } else { ?>
                             <h2><?php echo Language::translate("No ".$module." records Found!"); ?></h2>
-                         <?php } ?>   
-                            
-                       
+                         <?php } ?>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['footer']))  
                 		foreach($data['plugin_data']['views']['footer'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+                ?>
 		</div>
         <!-- /#page-wrapper -->
          <script>

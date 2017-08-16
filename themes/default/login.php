@@ -38,10 +38,10 @@
                         <form role="form" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="<?php echo Language::translate("E-mail"); ?>" name="email" type="email" autofocus required>
+                                    <input class="form-control" placeholder="<?php echo Language::translate("E-mail"); ?>" name="email" type="email" value="julieta@yahoo.com" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="<?php echo Language::translate("Password"); ?>" name="pass" type="password" value="" required>
+                                    <input class="form-control" placeholder="<?php echo Language::translate("Password"); ?>" name="pass" type="password" value="5ub1ipv3" required>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" name="lang" required>

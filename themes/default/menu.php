@@ -21,6 +21,7 @@
                 <a class="navbar-brand" href="index.php" style="padding: 5px 15px;">
 	                <img src="themes/default/assets/img/<?php echo $GLOBALS['portal_logo']?>" style="max-height:40px;">
                 </a>
+                <span class="page-header"><?php echo Language::translate($module); ?></span>
             </div>
             <!-- /.navbar-header -->
 

@@ -8,20 +8,11 @@
  * ****************************************************************************** */
 ?>
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate($module); ?></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+                ?>
           <div class="row">
              
   <?php if(isset($data['recordinfo']) && count($data['recordinfo'])>0 && $data['recordinfo']!=""){ foreach($data['recordinfo'] as $blockname => $tblocks): ?>

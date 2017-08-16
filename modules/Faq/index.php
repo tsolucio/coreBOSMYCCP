@@ -45,14 +45,10 @@ function get_list(){
 		if(!isset($faqpr[$faqprod["productid"]])) $faqpr[$faqprod["productid"]]=array();
 		$faqpr[$faqprod["productid"]]=$faqprod;
 	}
-		
-	
+
 	$data['faqs']=$faqspercat;
 	$data['faqproducts']=$faqpr;
-	
 	Template::display($this->module,$data,'list');
-		
-
 }
 
 }

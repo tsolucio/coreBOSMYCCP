@@ -44,7 +44,7 @@ if(ConfigEditor::checkLogin()){
 
 	$config = ConfigEditor::read('config.php');
 
-	if($_FILES['theme_zip']['name']!=""){
+	if (!empty($_FILES['theme_zip']['name'])) {
 		$tmpfile=$config['upload_dir']."/".$_FILES['theme_zip']['name'];
 		if(move_uploaded_file($_FILES['theme_zip']['tmp_name'], $tmpfile)){
 				$zip = new ZipArchive;
@@ -59,7 +59,7 @@ if(ConfigEditor::checkLogin()){
 		else $uploadzip="ERR";
 	}
 
-	if($_FILES['plugin_zip']['name']!=""){
+	if (!empty($_FILES['plugin_zip']['name'])) {
 		$tmpfile=$config['upload_dir']."/".$_FILES['plugin_zip']['name'];
 		if(move_uploaded_file($_FILES['plugin_zip']['tmp_name'], $tmpfile)){
 				$zip = new ZipArchive;

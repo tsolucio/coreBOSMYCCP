@@ -10,15 +10,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate("Ticket No"); ?>: <?php echo $data['ticketno']; ?></h1>
+                    <h1 class="page-subheader"><?php echo Language::translate("Ticket No"); ?>: <?php echo $data['ticketno']; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
                 ?> 
           <div class="row">
             
@@ -73,6 +72,8 @@
 				    case "Wait For Response":
 				        $panelcolor="red";
 				        break;
+				    default:
+				    	$panelcolor="whitesmoke";
 				}
                 ?>
                 
@@ -92,11 +93,6 @@
                         </a>
                         <?php endif; ?>
                     </div>
-                
-                      
-                
-                    
-                    
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <?php echo Language::translate("Attachments"); ?>

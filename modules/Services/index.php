@@ -13,10 +13,10 @@ function get_list(){
 	
 	$allow_all = $GLOBALS["sclient"]->call('show_all',array('module'=>$this->module));
 	
-	if($allow_all!='true') $onlymine="true";
+	$onlymine = ($allow_all!='true' ? 'true' : 'false');
 	
 	$sparams = array(
-		'id' => $_SESSION["loggeduser"]['id'], 
+		'id' => $_SESSION["loggeduser"]['id'],
 		'block'=>"$this->module",
 		'sessionid'=>$_SESSION["loggeduser"]['sessionid'],
 		'onlymine'=>$onlymine
@@ -36,18 +36,11 @@ function get_list(){
 		foreach($lmod as $table){
 			$datas[$count]['tablename']=$tablenames[$count];
 			$datas[$count]['recordlist']=$table[$this->module]['data'];
-			$datas[$count]['tableheader']=$table[$this->module]['head'][0];
+			$datas[$count]['tableheader']=(isset($table[$this->module]['head'][0]) ? $table[$this->module]['head'][0] : '');
 			$count++;
-		} 
-	
+		}
 	}
-	
-	
 	Template::display($this->module,$datas,'list');
-	
-	
-
 }
-
 
 }

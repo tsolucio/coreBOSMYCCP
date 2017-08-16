@@ -8,20 +8,11 @@
  * ****************************************************************************** */
 ?>
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate($module); ?> </h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-                                        <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -41,24 +32,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
-                                    	<?php 
+                                    	<?php
                                     	foreach($data['recordlist'] as $record){
-                                    	
                                     			echo "<tr>";
                                     			foreach($record as $record_fields) echo "<td>".Language::translate($record_fields['fielddata'])."</td>";
                                     			echo "</tr>";
-                                    			 																	
                                     	}
-	                                    	
                                     	?>
-                                    	                                                                              
                                     </tbody>
                                 </table>
                             </div>
-                         <?php } else { ?>    
+                         <?php } else { ?>
                             <h2><?php echo Language::translate("No ".$module." records Found!"); ?></h2>
-                         <?php } ?>   
+                         <?php } ?>
                             
                         </div>
                         <!-- /.panel-body -->
@@ -68,14 +54,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
-                                        <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['footer']))  
                 		foreach($data['plugin_data']['views']['footer'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+                ?>
 		</div>
         <!-- /#page-wrapper -->
          <script>

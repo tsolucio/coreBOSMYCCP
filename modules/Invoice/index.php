@@ -9,7 +9,7 @@
 
 class Invoice extends BaseModule{
 
-function detail($targetid){
+function detail($targetid,$display=true) {
 
 	$this->targetid=$targetid;
 

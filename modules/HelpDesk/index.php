@@ -6,13 +6,7 @@
  * Portions created by Proseguo s.l. - MakeYourCloud are Copyright(C) Proseguo s.l. - MakeYourCloud
  * All Rights Reserved.
  * ****************************************************************************** */
- 
- 
- 
- 
- 
- 
- 
+
 class HelpDesk extends BaseModule{
 
 	/*****************************************************************************
@@ -23,38 +17,31 @@ class HelpDesk extends BaseModule{
 		
 		$allow_all = $GLOBALS["sclient"]->call('show_all',array('module'=>$this->module));
 		
-		if($allow_all!='true') $onlymine="true";
+		$onlymine = ($allow_all!='true' ? 'true' : 'false');
 		
 		$sparams = array(array(
-			'id'=>$_SESSION["loggeduser"]['id'], 
-			'sessionid'=>$_SESSION["loggeduser"]['sessionid'], 
-			'user_name' => $_SESSION["loggeduser"]['user_name'], 
+			'id'=>$_SESSION["loggeduser"]['id'],
+			'sessionid'=>$_SESSION["loggeduser"]['sessionid'],
+			'user_name' => $_SESSION["loggeduser"]['user_name'],
 			'onlymine' => $onlymine,
-		));	
-		
-		
+		));
+
 		$lmod = $GLOBALS["sclient"]->call('get_tickets_list', $sparams);
-		
-		
+
 		if(isset($lmod) && count($lmod)>0  && $lmod!=""){
 		$data['tickets']=$lmod[1]['data'];
 		$data['tableheader']=$lmod[0]['head'][0];
 		$data['summaryinfo']=$this->dashboard();
 		}
-		
-		
+
 		Template::display($this->module,$data,'list');
-		
-	
 	}
-
-
 
 	/*****************************************************************************
 	* Function: HelpDesk::detail()
 	* ****************************************************************************/
 	
-	function detail($targetid){	
+	function detail($targetid,$display=true) {
 		
 		$this->targetid=$targetid;
 		$ticketid=$targetid;
@@ -81,7 +68,7 @@ class HelpDesk extends BaseModule{
 		));
 		$data['commentresult'] = $GLOBALS["sclient"]->call('get_ticket_comments', $params);
 		$data['ticketscount'] = count($result);
-		$data['commentscount'] = count($commentresult);
+		$data['commentscount'] = 0; // count($commentresult);
 		
 		$params = array(array(
 			'id'=>$_SESSION["loggeduser"]['id'], 
@@ -314,7 +301,7 @@ class HelpDesk extends BaseModule{
 			}else{
 				$upload_error ='LBL_FILE_HAS_NO_CONTENTS';
 				return $upload_error;
-			}	
+			}
 		}
 		else
 		{

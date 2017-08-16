@@ -9,6 +9,11 @@
  * ****************************************************************************** */
 ?>
 <div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header"><?php echo Language::translate($module); ?></h1>
+		</div>
+	</div>
   <div class="row">
 	<?php if(isset($data['recordinfo']) && count($data['recordinfo'])>0 && $data['recordinfo']!=""){ foreach($data['recordinfo'] as $blockname => $tblocks): ?>
 	<div class="col-lg-6">
@@ -42,7 +47,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($data['products']['item'] as $key => $field){ $count = $key+1; ?>
+					<?php foreach($data['products'] as $key => $field){ $count = $key+1; 
+					?>
 					<tr>
 						<td><strong><?php echo $field['productName'.$count]; ?></strong></td>
 						<td><?php echo $field['qty'.$count]; ?></td>
@@ -55,7 +61,7 @@
 			</table>
 		</div>
 	</div>
-	<?php } else { ?>
+	<?php } else { ?>    
 	<h2>
 		<?php 
 		$listTrans = "LBL_NO_".strtoupper($module)."_RECORDS_FOUND";

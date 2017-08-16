@@ -8,25 +8,16 @@
  * ****************************************************************************** */
 ?>
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate($module); ?></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+                ?>
             <div class="row">
-         <div class="col-lg-12">  
+         <div class="col-lg-12">
          <h3><?php echo Language::translate("Categories"); ?></h3>
          </div>
-         <div class="col-lg-3">  
+         <div class="col-lg-3">
             <ul class="list-group" role="tablist">
              <?php $ct=0; foreach($data['faqcategories'] as $fq): ?>
              	<li class="list-group-item <?php if($ct==0) echo "active"; ?>"><a href="#p<?php echo $ct; ?>" role="tab" data-toggle="tab"><?php echo $fq; ?></a></li>
@@ -34,12 +25,10 @@
 </ul>
          </div>
                 <div class="col-lg-9">
-                        <div class="tab-content">      
+                        <div class="tab-content">
                           <?php $ct=0; foreach($data['faqcategories'] as $fq): ?>
 						  <div class="tab-pane <?php if($ct==0) echo "active"; ?>" id="p<?php echo $ct; ?>">
-							  	
-							  	<div id="accordion">
-                            
+								<div id="accordion">
                             <?php if(isset($data['faqs'][$fq]) && count($data['faqs'][$fq])>0 && $data['faqs'][$fq]!=""): foreach($data['faqs'][$fq] as $faq): ?>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -64,33 +53,27 @@
 	                                            		echo "<div class='col-md-12'><h4>".Language::translate("Attachments").":</h4></div>";
 	                                            		foreach($faq['attachments'] as $doc) 
 	                                            		echo "<div class='col-md-3 dwbtn'>".$doc[1]['fielddata']."</div>";
-	                                            	
 	                                                  endif; ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                              <?php endforeach; else: ?>  
+                              <?php endforeach; else: ?>
                                 <h3><?php echo Language::translate("Sorry... No F.A.Q. in this Category!"); ?></h3>
                                 <?php endif; ?>
                            </div>
-							  
 						  </div>
 						  <?php $ct++; endforeach; ?>
-						  
 						</div>
-                            
                 </div>                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
-                                      <?php 
+<?php 
                 	if(isset($data['plugin_data']['views']['footer']))  
                 		foreach($data['plugin_data']['views']['footer'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
                 
-                ?> 
-            
+                ?>
 		</div>
         <!-- /#page-wrapper -->
          <script>
@@ -99,6 +82,4 @@
 	        $('.dwbtn > a').attr("class","btn btn-lg btn-info");
 	        $('.dwbtn > a').prepend('<i class="fa fa-eye"></i>&nbsp;|&nbsp;');
 	    });
-	    
-	    
 	    </script>

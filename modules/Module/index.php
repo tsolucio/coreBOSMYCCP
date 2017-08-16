@@ -7,8 +7,6 @@
  * All Rights Reserved.
  * ****************************************************************************** */
 
-
-
 class BaseModule{
 
 	var $module;
@@ -34,16 +32,14 @@ class BaseModule{
 	* Function: BaseModule::get_list()
 	* ****************************************************************************/
 		
-	public function get_list() 
-    {
-    	if(!isset($GLOBALS['api_modules'][$this->module])){
-	    
-	    	$allow_all = $GLOBALS["sclient"]->call('show_all',array('module'=>$this->module));
+	public function get_list() {
+		if(!isset($GLOBALS['api_modules'][$this->module])){
+			$allow_all = $GLOBALS["sclient"]->call('show_all',array('module'=>$this->module));
 		
-			if($allow_all!='true') $onlymine="true";
+			$onlymine = ($allow_all!='true' ? 'true' : 'false');
 			
 			$sparams = array(
-				'id' => $_SESSION["loggeduser"]['id'], 
+				'id' => $_SESSION["loggeduser"]['id'],
 				'block'=>$this->module,
 				'sessionid'=>$_SESSION["loggeduser"]['sessionid'],
 				'onlymine'=>$onlymine
@@ -55,22 +51,19 @@ class BaseModule{
 				$data['recordlist']=$lmod[1][$this->module]['data'];
 				$data['tableheader']=$lmod[0][$this->module]['head'][0];
 				$data['summaryinfo']=$this->dashboard();
-			}		
-			
+			}
 			Template::display($this->module,$data,'list');
-		
 		}
 		
 		else {
 			$lc=1;
 			$totlistcols=count($GLOBALS['api_modules'][$this->module]['list_fields']);
-			foreach($GLOBALS['api_modules'][$this->module]['list_fields'] as $lf){
+			$selstring = '';
+			foreach ($GLOBALS['api_modules'][$this->module]['list_fields'] as $lf) {
 				$selstring.=$lf;
-				if($lc!=$totlistcols) $selstring.=", ";
+				if ($lc!=$totlistcols) $selstring.=", ";
 				$lc++;
 			}
-			
-			
 			$query = "SELECT ".$selstring." FROM ".$GLOBALS['api_modules'][$this->module]['m']; 
 			if(isset($GLOBALS['api_modules'][$this->module]['relation_fields'])){
 				$query.=" WHERE ";
@@ -110,11 +103,8 @@ class BaseModule{
 			$this->moduleinfo['fieldslabels']=array();
 			foreach($this->moduleinfo['fields'] as $fieldinfo)
 				$this->moduleinfo['fieldslabels'][$fieldinfo['name']]=$fieldinfo['label'];
-			//print_r($this->moduleinfo['fieldslabels']);	
-				
-			$data['moduleinfo']=$this->moduleinfo;		
+			$data['moduleinfo']=$this->moduleinfo;
 			$data['records_columns'] = $GLOBALS['api_modules'][$this->module]['list_fields'];
-
 			Template::display($this->module,$data,"list_api");
 		}
 	
@@ -130,25 +120,20 @@ class BaseModule{
     	$this->targetid = $targetid;
     	$data['targetid']=$targetid;
     	if(!isset($GLOBALS['api_modules'][$this->module])){
-    	   	
 		$sparams = array(
 			'id' => $this->targetid, 
 			'block'=>$this->module,
 			'contactid'=>$_SESSION["loggeduser"]['id'],
 			'sessionid'=>$_SESSION["loggeduser"]['sessionid']
 		);
-			
-			
 		$lmod = $GLOBALS["sclient"]->call('get_details', $sparams);
-	
-			
-		foreach($lmod[0][$this->module] as $ticketfield) {	
+		foreach($lmod[0][$this->module] as $ticketfield) {
 			$fieldlabel = $ticketfield['fieldlabel'];
 			$fieldvalue = $ticketfield['fieldvalue'];
 			$blockname = $ticketfield['blockname'];
 					
 			if(!isset($mod_infos[$blockname])) $mod_infos[$blockname]=array();
-			$mod_infos[$blockname][]=array("label"=>$fieldlabel,"value"=>$fieldvalue);				
+			$mod_infos[$blockname][]=array("label"=>$fieldlabel,"value"=>$fieldvalue);
 		}
 		
 		$docs=$this->get_documents();
@@ -192,9 +177,6 @@ class BaseModule{
 				if(preg_match($re,$fielddata) && $fieldname!="id"){
 					$data['record'][$fieldname]=$GLOBALS['api_client']->doRetrieve($fielddata);
 				}
-				
-				
-					
 			}
 			
 			$relatedmoduleinfo=array();
@@ -209,30 +191,23 @@ class BaseModule{
 						foreach($relmodinfo['fields'] as $relfieldinfo){
 							if($relfieldinfo['type']['name']=="reference")
 								unset($relmodinfo['fields'][$c]);	
-							else { 
+							else {
 								$this->moduleinfo['fieldslabels'][$fieldinfo['name'].".".$relmodinfo['name'].".".$relfieldinfo['name']]=$relmodinfo['label']." - ".$relfieldinfo['label'];	
-							}				
+							}
 							$c++;
 						}
 						$relatedmoduleinfo[$fieldinfo['name']][$relmodinfo['name']]=$relmodinfo;
-					}	
+					}
 				}
-				
 				$this->moduleinfo['fieldslabels'][$fieldinfo['name']]=$fieldinfo['label'];
 			}
-			
 
-			$data['moduleinfo']=$this->moduleinfo;		
+			$data['moduleinfo']=$this->moduleinfo;
 			$data['records_columns'] = $GLOBALS['api_modules'][$this->module]['detail_fields'];
 			$data['download_pdf'] = $GLOBALS['api_modules'][$this->module]['download_pdf'];
 			$data['targetidcrm']=substr($this->targetid, strpos($this->targetid, "x") + 1);
-			
-			
-			
 			Template::display($this->module,$data,"detail_api");
-			
-		}				
-		
+		}
 	}
 
 	
@@ -250,7 +225,7 @@ class BaseModule{
 		);
 		
 		$resultb = $GLOBALS["sclient"]->call('get_documents', $params);
-			
+		$mod_infos = array();
 		if(isset($resultb) && count($resultb)>0 && $resultb!=""){
 			$ca=0;
 			foreach($resultb[1]['Documents']['data'] as $doc){ 
@@ -261,14 +236,10 @@ class BaseModule{
 		}
 		
 		return $mod_infos;
-		
 	}
-	
-	
-			
-	public function dashboard() 
-    {
-    
+
+	public function dashboard() {
+
     	$mod_stats_values=array(
     		"Quotes" => array("Accepted","Created","Delivered"),
     		"Project" => array("in progress","completed","on hold","prospecting"),
@@ -290,13 +261,13 @@ class BaseModule{
 			if(in_array($modname, $GLOBALS['avmod'])){
 				
 				$sparams = array(
-					'id' => $_SESSION["loggeduser"]['id'], 
+					'id' => $_SESSION["loggeduser"]['id'],
 					'block'=>$modname,
 					'sessionid'=>$_SESSION["loggeduser"]['sessionid'],
 					'user_name' => $_SESSION["loggeduser"]['user_name'],
 				);
 								
-				if($modname=="HelpDesk") $moddata = $GLOBALS["sclient"]->call('get_tickets_list', array($sparams)); 
+				if($modname=="HelpDesk") $moddata = $GLOBALS["sclient"]->call('get_tickets_list', array($sparams));
 				else $moddata = $GLOBALS["sclient"]->call('get_list_values', $sparams);
 				
 				$rc=0;
@@ -316,9 +287,7 @@ class BaseModule{
 					
 					
 					foreach($mdata as $record){
-						
-						$fc=0;				
-						
+						$fc=0;
 						foreach($mhead as $fieldname){
 							
 							$fielddata=$record[$fc]['fielddata'];
@@ -327,26 +296,20 @@ class BaseModule{
 								if(!isset($data[$modname][$record[$fc]['fielddata']])) $data[$modname][$record[$fc]['fielddata']]=0;
 								$data[$modname][$record[$fc]['fielddata']]++;
 							}
-																						
-							
 							$fc++;
 						}
-						
 						$data[$modname]['count']++;
-						
 						$rc++;
 					}
 				}
-						
 			}
-		
 		}
 		
 		$tpldata['dashboarddata']=$data;
 		
 		if($this->module!='Home') {
-			return $data;		
-		}		
+			return $data;
+		}
 		
 		else Template::display($this->module,$tpldata,'dashboard');
 	}

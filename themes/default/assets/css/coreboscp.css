@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eee;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.1;
+  color: inherit;
+}
+.page-subheader {
+  padding-bottom: 9px;
+  margin-top: 4px;
+  border-bottom: 1px solid #eee;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.1;
+  color: inherit;
+}
+
+#page-wrapper {
+	min-height: 700px !important;
+	padding-top: 60px;
+}

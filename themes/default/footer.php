@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
       
-      <?php 
+      <?php
       $msgt="none";
       if(isset($GLOBALS["opresult"]) && $GLOBALS["opresult"]!="") 
       {
@@ -58,7 +58,6 @@
 </div>
 
 <script type="text/javascript">
-                
 function getFileNameOnly(filename) {
 	var onlyfilename = filename;
   	// Normalize the path (to make sure we use the same path separator)
@@ -72,9 +71,7 @@ function getFileNameOnly(filename) {
 function validateFilename(form_ele) {
 if (form_ele.value == '') return true;
 	var value = form_ele.files[0].name;
-	
-	
-	
+
 	// Color highlighting logic
 	var err_bg_color = "#FFAA22";
 	if (typeof(form_ele.bgcolor) == "undefined") {
@@ -97,15 +94,11 @@ if (form_ele.value == '') return true;
 }
 
 $(function(){
+	<?php if (!empty($login)) { ?>
 	$(".chosen-select").chosen({disable_search_threshold: 10});
-	
-
 	$('#dataTables-example').dataTable().fnSort( [[0,"desc"]]);
 	$('#dataTables-example').DataTable().page.len(50).draw();
-
+	<?php } ?>
 })
-
-
 </script>
-
 </html>

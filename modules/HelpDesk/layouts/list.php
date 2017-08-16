@@ -9,18 +9,10 @@
 ?>
 
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate($module); ?></h1>
-                   
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
                 ?> 
             <div class="row">
                 <div class="col-lg-12">
@@ -44,49 +36,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
                                     	<?php 
                                     	foreach($data['tickets'] as $tkf){
-                                    	
                                     			echo "<tr>";
                                     			foreach($tkf as $tkv) echo "<td>".Language::translate($tkv['fielddata'])."</td>";
                                     			echo "</tr>";
-                                    			 																	
                                     	}
-	                                    	
                                     	?>
-                                    	                                                                              
                                     </tbody>
                                 </table>
                             </div>
-                            <?php } else { ?>    
+                            <?php } else { ?>
                             <h2><?php echo Language::translate("No ".$module." records Found!"); ?></h2>
 							<?php } ?>  
                             
                         </div>
                         <!-- /.panel-body -->
-                        
                         <div class="panel-footer">
                             <div class="input-group" style="width:100%; text-align:right;">
                                 <a href="index.php?module=HelpDesk&action=new" class="btn btn-warning btn-sm pull-right"><?php echo Language::translate("New Ticket"); ?></a>
                             </div>
                         </div>
-                        
-                        
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
-                                      <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['footer']))  
                 		foreach($data['plugin_data']['views']['footer'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+                ?>
 		</div>
         <!-- /#page-wrapper -->
          <script>

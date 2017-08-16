@@ -1,5 +1,4 @@
 <?php
-
 /* * *******************************************************************************
  * The content of this file is subject to the MYC Vtiger Customer Portal license.
  * ("License"); You may not use this file except in compliance with the License
@@ -7,8 +6,7 @@
  * Portions created by Proseguo s.l. - MakeYourCloud are Copyright(C) Proseguo s.l. - MakeYourCloud
  * All Rights Reserved.
  * ****************************************************************************** */
- 
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,7 +18,6 @@
     <!-- Bootstrap -->
     <link href="../themes/default/assets/css/bootstrap.min.css" rel="stylesheet">
 
-
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <link href="../themes/default/assets/css/chosen.min.css" rel="stylesheet" type="text/css">
@@ -31,19 +28,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
     <!-- jQuery Version 1.11.0 -->
     <script src="../themes/default/assets/js/jquery-1.11.0.js"></script>
-
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../themes/default/assets/js/bootstrap.min.js"></script>
     <script src="../themes/default/assets/js/chosen.jquery.min.js"></script>
-    
   </head>
   <body>
-
-
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -74,26 +66,23 @@
           <ul class="nav nav-sidebar">
           	<li role="presentation" class="label label-conf" style="text-align: left; padding: 10px 12px; border-radius: 0!important;"><i class="fa fa-gear fa-lg"></i>  General Settings</li>
             <li <?php if(!isset($_REQUEST['action'])) echo 'class="active"'; ?>><a href="index.php">Portal Configuration</a></li>
-            
           </ul>
-		  
           <ul class="nav nav-sidebar">
           	<li role="presentation" class="label label-conf" style="text-align: left; padding: 10px 12px;border-radius: 0!important;"><i class="fa fa-paint-brush fa-lg"></i>  Themes & Appearance</li>
-            <li <?php if($_REQUEST['action']=="themes") echo 'class="active"'; ?>><a href="index.php?action=themes">Themes Manager</a></li>
-            <li <?php if($_REQUEST['action']=="themestore") echo 'class="active"'; ?>><a href="index.php?action=themestore">Themes Store</a></li>
-            <li <?php if($_REQUEST['action']=="appearance") echo 'class="active"'; ?>><a href="index.php?action=appearance">Appearance Settings</a></li>            
+            <li <?php if (isset($_REQUEST['action']) && $_REQUEST['action']=="themes") echo 'class="active"'; ?>><a href="index.php?action=themes">Themes Manager</a></li>
+            <li <?php if (isset($_REQUEST['action']) && $_REQUEST['action']=="themestore") echo 'class="active"'; ?>><a href="index.php?action=themestore">Themes Store</a></li>
+            <li <?php if (isset($_REQUEST['action']) && $_REQUEST['action']=="appearance") echo 'class="active"'; ?>><a href="index.php?action=appearance">Appearance Settings</a></li>            
           </ul>
           <ul class="nav nav-sidebar">
             <li role="presentation" class="label label-conf" style="text-align: left; padding: 10px 12px;border-radius: 0!important;"><i class="fa fa-puzzle-piece fa-lg"></i>  Plugins Configurations</li>
-            <li <?php if($_REQUEST['action']=="plugins" && $_REQUEST['pn']!="modulebuilder") echo 'class="active"'; ?>><a href="index.php?action=plugins">Plugins Manager</a></li>
-            <li <?php if($_REQUEST['action']=="pluginstore") echo 'class="active"'; ?>><a href="index.php?action=pluginstore">Plugins Store</a></li>
+            <li <?php if (isset($_REQUEST['action']) && $_REQUEST['action']=="plugins" && $_REQUEST['pn']!="modulebuilder") echo 'class="active"'; ?>><a href="index.php?action=plugins">Plugins Manager</a></li>
+            <li <?php if (isset($_REQUEST['action']) && $_REQUEST['action']=="pluginstore") echo 'class="active"'; ?>><a href="index.php?action=pluginstore">Plugins Store</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="col-sm-12">
 
-	   			
-	   			<h3><?php echo $pagetitle; ?></h3>  
+	   			<h3><?php echo $pagetitle; ?></h3>
 	   			 			
 	   			<?php if(isset($pluginsettings['altmess'])) $altmess=$pluginsettings['altmess']; if(isset($altmess) && $altmess=="OK"): ?><div class="alert alert-success" role="alert">Your configuration has been saved correctly! </div>
 	   			

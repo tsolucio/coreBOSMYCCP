@@ -8,20 +8,11 @@
  * ****************************************************************************** */
 ?>
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo Language::translate($module." List"); ?></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-                            <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['header']))  
                 		foreach($data['plugin_data']['views']['header'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
-                
-                ?> 
-            
+                ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -42,42 +33,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
                                     	<?php 
                                     	foreach($data['records'] as $record){
-                                    	
                                     			echo "<tr>";
-                                    			foreach($data['records_columns'] as $fieldname)  
+                                    			foreach($data['records_columns'] as $fieldname)
                                     			
                                     			if($fieldname==$data['moduleinfo']['labelFields'] ||(is_array($data['moduleinfo']['labelFields']) && in_array($fieldname, $data['moduleinfo']['labelFields']))) 
                                     			echo "<td><a href='index.php?module=".$module."&action=index&id=".$record['id']."'>".Language::translate($record[$fieldname])."</a></td>";
                                     			
                                     			elseif(strpos($fieldname,'.')!==false){
 	                                    			$fieldparts=explode(".", $fieldname);
-	                                    			
-	                                    			echo "<td>".Language::translate($record[$fieldparts[0]][$fieldparts[1]]);	                                    			
+	                                    			echo "<td>".Language::translate($record[$fieldparts[0]][$fieldparts[1]]);
 	                                    			echo "</td>";
                                     			}
-                                    			
                                     			elseif(is_array($record[$fieldname])){
 	                                    			echo "<td>".Language::translate(reset($record[$fieldname]))."</td>";
                                     			}
-                                    			
 												else echo "<td>".Language::translate($record[$fieldname])."</td>";
-																									                                  
                                     			echo "</tr>";
-                                    			 																	
                                     	}
-	                                    	
                                     	?>
-                                    	                                                                              
                                     </tbody>
                                 </table>
                             </div>
-                         <?php } else { ?>    
+                         <?php } else { ?>
                             <h2><?php echo Language::translate("No ".$module." records Found!"); ?></h2>
-                         <?php } ?>   
-                            
+                         <?php } ?>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -86,14 +67,12 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            
-                            <?php 
+<?php
                 	if(isset($data['plugin_data']['views']['footer']))  
                 		foreach($data['plugin_data']['views']['footer'] as $pluginname => $viewname)
                 			Template::displayPlugin($pluginname,$data,$viewname);
                 
-                ?> 
-            
+                ?>
 		</div>
         <!-- /#page-wrapper -->
          <script>
