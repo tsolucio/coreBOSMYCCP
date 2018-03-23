@@ -15,7 +15,7 @@ $app_strings = Array(
 "Open" => "Aberto",
 
 
-'pt_br'=>"Português Brasil",
+'pt_br'=>"Português",
 'customerportal'=>'Portal do Cliente',
 'LBL_LOGIN'=>'Acessar',
 'LBL_USER_NAME'=>'Usuário:',
@@ -270,9 +270,9 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'LBL_INVENTORY_PRODUCTS'=>'Products and services',
 'LBL_INVENTORY_NAME'=>'Name',
 'LBL_INVENTORY_QTY'=>'Quantity',
-'LBL_INVENTORY_LISTPRICE'=>'List Price',
-'LBL_INVENTORY_NETPRICE'=>'Price',
-'LBL_INVENTORY_TAX'=>'Tax',
+'LBL_INVENTORY_LISTPRICE'=>'Lista de Preço',
+'LBL_INVENTORY_NETPRICE'=>'Preço',
+'LBL_INVENTORY_TAX'=>'Imposto',
 
 //Documents
 'LBL_NOTES_INFORMATION'=>'Documentos',
@@ -369,7 +369,7 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'LBL_YOUR_EMAIL'=>'Seu email:',
 'LBL_SEND_PASSWORD'=>'Enviar Senha',
 'LBL_CLOSE'=>'Fechar',
-'LBL_LOGIN_NOTE'=>'Email e Senha Não são sensiveis à letras maiúsculas.',
+'LBL_LOGIN_NOTE'=>'Email e Senha não são sensiveis à letras maiúsculas.',
 'LBL_MY_SETTINGS'=>'Minhas Configurações',
 'LBL_LOG_OUT'=>'Desconectar',
 'QUOTE_RELATED'=>'Cotações Relacionadas ',
@@ -448,13 +448,13 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'LBL_PORTAL_BODY_MAILINFO' => 'O Chamado é',
 'LBL_DETAIL' => 'os detalhes estão:',
 'LBL_REGARDS' => 'Cordialmente',
-'LBL_TEAM' => 'Equipe HelpDesk',
+'LBL_TEAM' => 'Equipe SAC',
 'LBL_TICKET_DETAILS' => 'Detalhes do Chamado',
 'LBL_SUBJECT' => 'Assunto: ',
 'created' => 'criado',
 'replied' => 'respondido',
 'reply'=>'Existe uma resposta para',
-'customer_portal' => 'no "Portal do Cliente" do VTiger.',
+'customer_portal' => 'no "Portal do Cliente" do CRM.',
 'link' => 'Você pode utilizar o seguinte link para visualizar as respostas:',
 'Thanks' => 'Obrigado',
 'Support_team' => 'Equipe Suporte Vtiger',
@@ -462,7 +462,7 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'Ticket Title' => 'Título do Chamado',
 'Re' => 'Re:',
 
-'INVALID_USERNAME_OR_PASSWORD'=>'Usuáo ou Senha incorreta!',
+'INVALID_USERNAME_OR_PASSWORD'=>'Usuário ou senha incorreta!',
 "UPLOAD_COMPLETED"=>"Transferência Concluída",
 
 //Missing Fields
@@ -479,8 +479,8 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'Urgent'=>'Urgente',
 
 // Categorie Picklist
-'Small Problem'=>'Problema Pequeno',
-'Big Problem'=>'Problema Grande',
+'Small Problem'=>'Problema Contornável',
+'Big Problem'=>'Problema Restritivo',
 'Other Problem'=>'Outros Problemas',
 
 // Login Page
@@ -520,7 +520,10 @@ lhe interesse. Posteriormente, você também poderá fazer Pesquisas em toda a B
 'Categories'=>'Categorias',
 
 // Customer Portal Title
-'MYC Vtiger Customer Portal'=>'Portal do Cliente MVC Vtiger',
+'MYC Vtiger Customer Portal'=>'Portal do Cliente',
+'The Email you Request is not in our system!'=>'O email que está procurando, não está em nosso sistema!',
+'Send Request' => 'Enviar Requisição',
+'Go to Login' => 'Ir para tela de Login',
 
 );
 
